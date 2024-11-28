@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatDupuis</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-language"></i> ChatDupuis</h1>
+            <p>Your AI-powered French Language Companion</p>
+        </header>
+        
+        <main>
+            <div class="input-area">
+                <textarea 
+                    id="user-query" 
+                    placeholder="Ask a question about French language, grammar, or usage..."
+                    rows="4"
+                ></textarea>
+                <div class="query-type-selector">
+                    <label>
+                        <input type="radio" name="query-type" value="grammar" checked>
+                        <i class="fas fa-book"></i> Grammar
+                    </label>
+                    <label>
+                        <input type="radio" name="query-type" value="punctuation">
+                        <i class="fas fa-quote-right"></i> Punctuation
+                    </label>
+                    <label>
+                        <input type="radio" name="query-type" value="vocabulary">
+                        <i class="fas fa-dictionary"></i> Vocabulary
+                    </label>
+                </div>
+                <button id="submit-btn">
+                    <span>Analyze (~2 second respond time)</span>
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div id="result-container" class="result-container hidden">
+                <div class="learning-steps">
+                    <h3><i class="fas fa-graduation-cap"></i> Learning Journey</h3>
+                    <div id="explanation-steps"></div>
+                </div>
+                <div class="answer-box">
+                    <div class="answer-header">
+                        <h3><i class="fas fa-comment-dots"></i> Answer</h3>
+                        <button id="copy-btn" class="copy-btn">
+                            <i class="fas fa-copy"></i>
+                            Copy
+                        </button>
+                    </div>
+                    <div id="answer-content" class="answer-content"></div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p><i class="fas fa-bolt"></i> Powered by Gemini AI</p>
+        </footer>
+    </div>
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
