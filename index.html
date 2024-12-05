@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatDupuis</title>
+    <title>ChatDupuis - French Language Companion</title>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
     
     <!-- Custom Styles -->
     <link rel="stylesheet" href="styles.css">
@@ -19,60 +19,101 @@
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-language"></i> ChatDupuis-0.5B</h1>
-            <p>Your AI-powered French Language Companion</p>
+            <h1><i class="fas fa-language"></i> ChatDupuis</h1>
+            <p>Your AI-Powered French Language Learning Companion</p>
         </header>
-        
+
         <main>
-            <div class="input-area">
-                <textarea 
-                    id="user-query" 
-                    placeholder="Ask a question about French language, grammar, or usage..."
-                    rows="4"
-                ></textarea>
-                <div class="query-type-selector">
-                    <label>
-                        <input type="radio" name="query-type" value="grammar" checked>
-                        <i class="fas fa-book"></i> Grammar
-                    </label>
-                    <label>
-                        <input type="radio" name="query-type" value="punctuation">
-                        <i class="fas fa-quote-right"></i> Punctuation
-                    </label>
-                    <label>
-                        <input type="radio" name="query-type" value="vocabulary">
-                        <i class="fas fa-dictionary"></i> Vocabulary
-                    </label>
-                </div>
-                <button id="submit-btn">
-                    <span>Analyze (~2 second respond time)</span>
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-            <div id="result-container" class="result-container hidden">
-                <div class="learning-steps">
-                    <h3><i class="fas fa-graduation-cap"></i> Learning Journey</h3>
-                    <div id="explanation-steps"></div>
-                </div>
-                <div class="answer-box">
-                    <div class="answer-header">
-                        <h3><i class="fas fa-comment-dots"></i> Answer</h3>
-                        <button id="copy-btn" class="copy-btn">
-                            <i class="fas fa-copy"></i>
-                            Copy
-                        </button>
+            <div class="chat-container">
+                <div class="input-area">
+                    <div class="input-header">
+                        <h3>What would you like to learn?</h3>
+                        <div class="query-type-selector">
+                            <label class="radio-btn">
+                                <input type="radio" name="query-type" value="grammar" checked>
+                                <span><i class="fas fa-book"></i> Grammar</span>
+                            </label>
+                            <label class="radio-btn">
+                                <input type="radio" name="query-type" value="punctuation">
+                                <span><i class="fas fa-quote-right"></i> Punctuation</span>
+                            </label>
+                            <label class="radio-btn">
+                                <input type="radio" name="query-type" value="vocabulary">
+                                <span><i class="fas fa-dictionary"></i> Vocabulary</span>
+                            </label>
+                        </div>
                     </div>
-                    <div id="answer-content" class="answer-content"></div>
+                    
+                    <textarea 
+                        id="user-query" 
+                        placeholder="Pose your French language question here (e.g., 'Explain the passé composé tense')"
+                        rows="4"
+                    ></textarea>
+                    
+                    <div class="query-actions">
+                        <button id="submit-btn">
+                            <span>Analyze Question</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                        <div class="query-hints">
+                            <span>💡 Pro Tip: Be specific in your questions!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="result-container" class="result-container hidden">
+                    <div class="conversation-thread">
+                        <div class="message user-message">
+                            <div class="message-content" id="user-query-display"></div>
+                        </div>
+                        <div class="message ai-message">
+                            <div class="learning-steps" id="explanation-steps"></div>
+                            <div class="answer-box">
+                                <div class="answer-header">
+                                    <h3><i class="fas fa-comment-dots"></i> Example Sentence</h3>
+                                    <button id="copy-btn" class="copy-btn">
+                                        <i class="fas fa-copy"></i> Copy
+                                    </button>
+                                </div>
+                                <div id="answer-content" class="answer-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="additional-resources">
+                <h3><i class="fas fa-book-open"></i> Learning Resources</h3>
+                <div class="resource-links">
+                    <a href="#" class="resource-link">French Grammar Guide</a>
+                    <a href="#" class="resource-link">Verb Conjugation</a>
+                    <a href="#" class="resource-link">Pronunciation Tips</a>
                 </div>
             </div>
         </main>
+
         <footer>
-            <p><i class="fas fa-bolt"></i> Powered by Gemini AI</p>
+            <div class="footer-content">
+                <p>
+                    <i class="fas fa-bolt"></i> Powered by Gemini AI 
+                    <span class="version-tag">v0.5 Beta</span>
+                </p>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
         </footer>
     </div>
+
     <div id="loading-overlay" class="loading-overlay">
-        <div class="spinner"></div>
+        <div class="spinner-container">
+            <div class="spinner"></div>
+            <p>Analyzing your question...</p>
+        </div>
     </div>
+
     <script src="script.js" type="module"></script>
 </body>
 </html>
